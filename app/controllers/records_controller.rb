@@ -1,7 +1,7 @@
 class RecordsController < ApplicationController
     
-    
     def index
+        @records = Record.where(:title => params[:query]) and return if params[:query]
         @records = Record.all
     end
     
@@ -33,6 +33,6 @@ class RecordsController < ApplicationController
     private
     
         def record_params
-            params.require(:record).permit(:title,:amount,:date)
+            params.require(:record).permit(:title,:amount,:date, :query)
         end
 end

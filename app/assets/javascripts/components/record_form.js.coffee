@@ -10,7 +10,6 @@
       title: React.findDOMNode(@refs.title).value
       date: React.findDOMNode(@refs.date).value
       amount: React.findDOMNode(@refs.amount).value
-    # jQuery doesn't have a $.put shortcut method either
     $.ajax
       method: 'PUT'
       url: "/records/#{ @props.record.id }"
@@ -70,6 +69,6 @@
         type: 'submit'
         className: 'btn btn-primary'
         disabled: !@valid()
-        'Create record'
+        'Create'
         
     

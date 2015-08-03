@@ -14,6 +14,11 @@
       records = React.addons.update(@state.records, { $push: [record] })
       @setState records: records
       
+    searchRecord: (query) -> 
+      @setState records: @state.records.filter (val) -> val.title == query
+      @replaceState records: records
+      alert(records)
+      
     credits: ->
       credits = @state.records.filter (val) -> val.amount >= 0
       credits.reduce ((prev, curr) ->
@@ -46,6 +51,7 @@
           React.createElement AmountBox, type: 'danger', amount: @debits(), text: 'Debit'
           React.createElement AmountBox, type: 'info', amount: @balance(), text: 'Balance'
 
+        React.createElement SearchForm, handleSearchRecord: @searchRecord
         React.createElement RecordForm, handleNewRecord: @addRecord
         React.DOM.hr null
         React.DOM.table
